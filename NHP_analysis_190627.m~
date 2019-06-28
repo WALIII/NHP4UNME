@@ -1,0 +1,41 @@
+
+
+% itterate through all to make TargetData2
+
+for neuron = 1:max(TargetData(1).neurons);
+    for  target = 1:7
+        [Val2{neuron,target},TargetData2,MeanTL(target)] = NHP_easyWarp(TargetData2,target,neuron);
+    end
+    disp(['Moving to Neuron', num2str(neuron)]);
+end
+
+
+figure();
+hold on;
+col = jet(47);
+int1 = 1:50:301;
+for i = 2; % target
+    for ii = 1:47; % neuron    
+        Val = Val2{ii,i};
+        for session = 1:6;       
+            data = zscore(Val(:,int1(session):int1(session+1)))';;          
+            dat{session}(:,:,ii) = data;
+
+        end
+    end
+end
+
+
+figure();
+for i = 1:6
+    dat2.directed = dat{6}(:,950:1100,:);
+    dat2.undirected = dat{i}(:,950:1100,:);
+[indX,B(:,:,i),C(:,:,i), output] = CaBMI_schnitz(dat2);
+subplot(1,6,i);
+imagesc(squeeze(B(:,:,i)));
+colormap(hot);
+end
+
+
+
+
