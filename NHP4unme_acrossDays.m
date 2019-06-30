@@ -10,7 +10,7 @@ function [DIR_INDR, out] = NHP4unme_acrossDays(paco_struct, DN_index,IND_index,c
 
 % User Inputs:
 
-dateRange = 6:35;
+dateRange = 6:34;
 
 [bmi_files] =   def_expt_19day();
 

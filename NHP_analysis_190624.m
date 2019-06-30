@@ -9,9 +9,9 @@ close all
 % look at all targets
 
 
-% for  target = 1:7
-% [Val{target},TargetData,MeanTL(target)] = NHP_easyWarp(TargetData,target,neuron);
-% end
+for  target = 1:7
+[Val{target},TargetData,MeanTL(target)] = NHP_easyWarp(TargetData,target,neuron);
+end
 
 close all;
 
@@ -92,6 +92,32 @@ plot(mn,'Color',col(i,:));
 set(h,'EdgeColor','None');
 end
 end
+title(' All first trials');
 
 % ax(:).YDir = 'reverse';
+
+
+%% plot all the first trials:
+
+
+figure(); 
+hold on;
+int1 = 1:50:301;
+col = jet(7);
+
+for i = 1:7;
+    Val = Val2{i};
+for iii = 6
+    
+data = Val(:,int1(iii):int1(iii+1))'-i/2;
+
+L = size(data,2);
+se = std(data)/2;%sqrt(length(data));
+mn = mean(data);
+h = fill([1:L L:-1:1],[mn-se fliplr(mn+se)],col(i,:)); alpha(0.5);
+plot(mn,'Color',col(i,:));
+set(h,'EdgeColor','None');
+end
+end
+title(' All last trials');
 

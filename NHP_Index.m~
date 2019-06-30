@@ -5,11 +5,10 @@ function [DN_index, IND_index, out] = NHP_Index(direct_id,indirect_far_id)
 % max number of unique direct cells
 h = cat(1,direct_id{:});
 unique_ID = unique(h);
+
+% For stable, continuous units:
 first_day = 5;
-last_day = 34;
-
-%% For stable, continuous direct units:
-
+last_day =34;
 
 % for each unique Direct cell, loop though all days and make a channel
 % reference for that day ( if there is one).
@@ -23,44 +22,14 @@ for i = unique_ID'
     end
 end
 
-% % Plot stable Direct units:
-% GG = cat(1,DN_index{:}); GG(GG>0) =10;
-% figure(); imagesc(GG);
-% title('Stability of Direct Units');
-% ylabel('putative unique unts');
-% xlabel('Days');
-% 
-
-% Plot stable Inirect units:
-GG = cat(1,DN_index{:});
-GG(GG>0) =10;
-GG(isnan(GG))=0;
-
+% Plot stable Direct units:
+GG = cat(1,DN_index{:}); GG(GG>0) =10;
 figure(); imagesc(GG);
 title('Stability of Direct Units');
 ylabel('putative unique unts');
 xlabel('Days');
 
-% sort by the most stable units:
-GGsum = sum(GG');
-[a,b] = sort(GGsum,'descend');
-figure(); imagesc(GG(b,:));
 
-figure(); histogram(GGsum/10);
-title('Distribution of stable Direct units');
-xlabel('Days of continuous stability')
-ylabel('Number of putative unique units');
-
-% find all units that are stable from day 5 to day 34;
-idx_stable_direct = find(GG(:,first_day) ==10 & GG(:,last_day) ==10);
-DirectStableCells = GG(idx_stable_direct,:);
-figure();
-imagesc(DirectStableCells);
-
-out.idx_stable_direct = idx_stable_direct;
-out.DirectStableCells = DirectStableCells;
-
-clear GG GGsum a b 
 
 
 
