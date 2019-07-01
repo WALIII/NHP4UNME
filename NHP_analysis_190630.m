@@ -1,27 +1,26 @@
 
-function [TargetData3] = NHP_analysis_190627(TargetData2)
+function NHP_analysis_190630(Val2_DIR,Val2_INDR)
 
+% plot schnitz data for direct and indirect data:
 
-% itterate through all to make TargetData2
-
-for neuron = 1:max(TargetData2(1).neurons);
-    for  target = 1:7
-        [Val2{neuron,target},TargetData2,MeanTL(target)] = NHP_easyWarp(TargetData2,target,neuron);
-    end
-    disp(['Moving to Neuron  ', num2str(neuron)]);
-end
+% Load data from Ganguly2009/data/targetdata/Val2
 
 
 
+% COncat the data:
+Val2_all = cat(1, Val2_INDR,Val2_DIR);
+
+
+Ind2plot = [ zeros(1,size(Val2_INDR,1)), ones(1,size(Val2_DIR,1))];
 
 clear B C dat dat2 output indX
 figure();
 hold on;
 col = jet(47);
 int1 = 1:50:301;
-for i = 2; % target
-    for ii = 1:neuron; % neuron    
-        Val = Val2{ii,i};
+for i = 3; % target
+    for ii = 1:size(Val2_all,1); % neuron    
+        Val = Val2_all{ii,i};
         for session = 1:6;       
             data = zscore(Val(:,int1(session):int1(session+1)))';;          
             dat{session}(:,:,ii) = data;
@@ -42,11 +41,12 @@ end
 
 figure();
 for i = 1:6
-subplot(1,6,i);
+subplot(1,7,i);
 imagesc(squeeze(C(:,:,i)),[0, 3] );
 colormap(hot);
 end
-
-TargetData3 = TargetData2;
+subplot(1,7,7); % dir vs indir:
+imagesc(Ind2plot(indX)')
+title('white is DIR');
 
 

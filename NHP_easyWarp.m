@@ -1,12 +1,12 @@
 function [Val,TargetData,MeanTL] = NHP_easyWarp(TargetData,target,neuron);
 
-plotting = 0;
+plotting = 1;
 
 
 nn = target;
 % neuron = 1;
 % Warp attempt
-offset = 0.1;
+offset = 0.4;
 stopT= TargetData(nn).metadata.trial_go(:);
 stopT(stopT<1) = 21;
 startT = TargetData(nn).metadata.water_on(:)+10;
@@ -99,6 +99,54 @@ ax1.YDir = 'reverse';
 
 linkaxes([ax1 ax2],'xy');
 xlim([19 30]);
+
+
+%% again, without the lines:
+figure();
+ax1 = subplot(1,2,1);
+for i = neuron
+    hold on;
+    for ii = 1:max(TargetData(nn).trials);
+        lT = find(TargetData(nn).neurons==i  & TargetData(nn).trials == ii);
+        
+        tempNeuron{ii} = TargetData(nn).times(lT);
+    end
+    plotSpikeRaster(tempNeuron,'PlotType','vertline');
+      hold on;
+        % plot(stopT,1:size(TargetData(nn).metadata.trial_go(:)));
+        % plot(TargetData(nn).metadata.water_on(:)+10,1:size(TargetData(nn).metadata.trial_go(:)));
+
+    
+    clear tempNeuron;
+    title(['Neuron ',num2str(i)]);
+end
+
+ax2 = subplot(1,2,2);
+for i = neuron
+    hold on;
+    for ii = 1:max(TargetData(nn).trials);
+        lT = find(TargetData(nn).neurons==i  & TargetData(nn).trials == ii);
+        
+        tempNeuron{ii} = TargetData(nn).warped_times(lT);
+    end
+    plotSpikeRaster(tempNeuron,'PlotType','vertline');
+    hold on;
+    %plot(ones(1,length(TargetData(nn).metadata.trial_go(:)))*MeanTL+20,1:size(TargetData(nn).metadata.trial_go(:)))
+    %plot(TargetData(nn).metadata.water_on(:)+10,1:size(TargetData(nn).metadata.trial_go(:)))
+    %
+%     
+    clear tempNeuron;
+    title(['Neuron ',num2str(i)]);
+end
+
+ax2.YDir = 'reverse';
+ax1.YDir = 'reverse';
+
+linkaxes([ax1 ax2],'xy');
+xlim([19 30]);
+
+
+figure();
 
 end
 
