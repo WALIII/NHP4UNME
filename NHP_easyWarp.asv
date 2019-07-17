@@ -73,7 +73,7 @@ for i = neuron
 
     
     clear tempNeuron;
-    title(['Neuron ',num2str(i),' Target ',num2str(target)]);
+    title(['Neuron ',num2str(i),' Target ',target]);
 end
 
 ax2 = subplot(1,2,2);
@@ -91,7 +91,7 @@ for i = neuron
     %
 %     
     clear tempNeuron;
-    title(['Neuron ',num2str(i),' Target ',num2str(target)]);
+    title(['Neuron ',num2str(i),' Target ',target]);
 end
 
 ax2.YDir = 'reverse';
@@ -118,7 +118,7 @@ for i = neuron
 
     
     clear tempNeuron;
-    title(['Neuron ',num2str(i),' Target ',num2str(target)]);
+    title(['Neuron ',num2str(i),' Target ',target]);
 end
 
 ax2 = subplot(1,2,2);
@@ -136,7 +136,7 @@ for i = neuron
     %
 %     
     clear tempNeuron;
-    title(['Neuron ',num2str(i),' Target ',num2str(target)]);
+    title(['Neuron ',num2str(i),' Target ',target]);
 end
 
 ax2.YDir = 'reverse';
@@ -192,7 +192,7 @@ h = fill([1:L L:-1:1],[mn-se fliplr(mn+se)],col(iii,:)); alpha(0.5);
 plot(mn,'Color',col(iii,:));
 set(h,'EdgeColor','None');
 end
-    title(['Neuron ',neuron,' Target ',num2str(target)]);
+    title(['Neuron ',neuron,' Target ',target]);
 
 end
 

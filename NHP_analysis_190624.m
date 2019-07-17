@@ -13,7 +13,7 @@ for  target = 1:7
 [Val{target},TargetData,MeanTL(target)] = NHP_easyWarp(TargetData,target,neuron);
 end
 
-close all;
+%close all;
 
 % 
 MeanTL(1:20) = 2.5;
