@@ -1,5 +1,5 @@
 # NHP4UNME
-Finding similarities in mice and "men"
+Finding similarities in mice and NHP
 
 
 To process the data appropriately, load in:
