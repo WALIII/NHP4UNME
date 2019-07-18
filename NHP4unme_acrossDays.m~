@@ -17,7 +17,7 @@ dateRange = 6:34;
 filenames = bmi_files.active_file_names;
 
 % Convert session to day:
-Ses2Day = NHP_Sessions2Days(bmi_files);
+out = NHP_Sessions2Days(bmi_files);
 
 % convert struct to cell for easier indexing:
 paco_cell = struct2cell(paco_struct);
@@ -49,14 +49,12 @@ if isnan(cell_ID);
 end
     
 
-% load in block data
+% load in block data:
 day = paco_cell{i};
 load([filenames{i},'.mat'],'trial_data');
 
 
 out{counter} = NHP4unme_trialTimes(trial_data,day,cell_ID,0);
-out{counter}.session = i;
-out{counter}.day = Ses2Day(i);
 
 counter = counter+1;
 % concat across the day
@@ -116,10 +114,16 @@ for tgp = 1:target;
 end
 
 
-
-
-%% plot waveforms:
-
+% plot avg waveforms:
+% Across targets ( one day, 17)
+% dy = 17;
+% figure(); 
+% hold on;
+% for iv = 1:4
+% Gplt =  cat(1,out{1, dy}.WaveSort{iv}{:});
+% plot(mean(Gplt,1));
+% end
+% title('waveforms across targets, day 17');
 
 clear Gplt
 % Across days ( all days
@@ -146,8 +150,6 @@ colorbar();
 
 
 end
-
-
     
     
     

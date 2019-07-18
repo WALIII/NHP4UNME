@@ -114,7 +114,6 @@ for ii = 1:plotmax; % for a sample of targets,
     %
     % linkaxes(b(:),'x');
     out.n_act_vect2_sort =  n_act_vect2_sort;
-    
     % clear unused vars
     clear waveforms
 end

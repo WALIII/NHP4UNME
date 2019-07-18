@@ -30,6 +30,8 @@ for i = 1:size(IdX,1)
     end
 
     [~, neuronsOfInterest{counter}] = NHP4unme_acrossDays(paco_struct, DN_index,IND_index,cell2use,D_or_IND);
+    neuronsOfInterest{counter} = NHP_ConvertSessionstoDays(neuronsOfInterest{counter});
+
 counter = counter+1;
 end
 %% Format for TimeWarping:
