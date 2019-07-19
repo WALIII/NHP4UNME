@@ -60,13 +60,13 @@ imagesc(DirectStableCells);
 out.idx_stable_direct = idx_stable_direct;
 out.DirectStableCells = DirectStableCells;
 
-clear GG GGsum a b 
+clear GG GGsum a b h 
 
 
 
 %% Indirect Far Neurons
 h = cat(1,indirect_far_id{:});
-unique_ID = unique(h)
+unique_ID = unique(h);
 
 % for each unique Direct cell, loop though all days and make a channel
 % reference for that day ( if there is one).

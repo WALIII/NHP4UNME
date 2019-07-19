@@ -32,7 +32,6 @@ for i =1:NumSessions
             % for each target...
             for iii = 1:7
                 out{counter}.xPoints{:,iii} = cat(1,out{counter}.xPoints{:,iii},neuronsOfInterest{i}.xPoints{:,iii});
-                
                 out{counter}.yPoints{:,iii} = cat(1,out{counter}.yPoints{:,iii},neuronsOfInterest{i}.yPoints{:,iii});
                 out{counter}.xPoints2{:,iii} = cat(1,out{counter}.xPoints2{:,iii},neuronsOfInterest{i}.xPoints2{:,iii});
                 out{counter}.yPoints2{:,iii} = cat(1,out{counter}.yPoints2{:,iii},neuronsOfInterest{i}.yPoints2{:,iii});

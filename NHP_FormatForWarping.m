@@ -29,10 +29,15 @@ for i = 1:size(IdX,1)
     cell2use = out.idx_stable_indirect(i);
     end
 
-    [~, neuronsOfInterest{counter}] = NHP4unme_acrossDays(paco_struct, DN_index,IND_index,cell2use,D_or_IND);
+    try
+    [~, neuronsOfInterest{counter}] = NHP4unme_acrossDays(paco_struct, DN_index,IND_index,cell2use,D_or_IND);   
     neuronsOfInterest{counter} = NHP_ConvertSessionstoDays(neuronsOfInterest{counter});
-
-counter = counter+1;
+    counter = counter+1;
+    catch
+        disp('Error- skipping cell');
+    continue
+    end
+    
 end
 %% Format for TimeWarping:
 disp('pausing for warping');

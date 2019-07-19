@@ -58,7 +58,7 @@ if plotting ==1;
 % Plot the 2 in a subplot
 %%%
 figure();
-ax1 = subplot(1,2,1);
+ax1 = subplot(1,3,1);
 for i = neuron
     hold on;
     for ii = 1:max(TargetData(nn).trials);
@@ -75,8 +75,30 @@ for i = neuron
     clear tempNeuron;
     title(['Neuron ',num2str(i),' Target ',num2str(target)]);
 end
+xlim([19 30]);
+set(gcf,'renderer','painters');
 
-ax2 = subplot(1,2,2);
+
+%%
+ax1 = subplot(1,3,2);
+for i = neuron
+    hold on;
+    for ii = 1:max(TargetData(nn).trials);
+        lT = find(TargetData(nn).neurons==i  & TargetData(nn).trials == ii);
+        
+        tempNeuron{ii} = TargetData(nn).times(lT)-TargetData(nn).metadata.trial_go(ii)+20;
+    end
+    plotSpikeRaster(tempNeuron,'PlotType','vertline');
+      hold on;
+         plot(40-stopT,1:size(TargetData(nn).metadata.trial_go(:)));
+         plot((TargetData(nn).metadata.water_on(:)+10),1:size(TargetData(nn).metadata.trial_go(:)));
+    clear tempNeuron;
+    title(['Neuron ',num2str(i),' Target ',num2str(target)]);
+end
+%%
+xlim([12 23]);
+
+ax2 = subplot(1,3,3);
 for i = neuron
     hold on;
     for ii = 1:max(TargetData(nn).trials);
@@ -97,13 +119,13 @@ end
 ax2.YDir = 'reverse';
 ax1.YDir = 'reverse';
 
-linkaxes([ax1 ax2],'xy');
+% linkaxes([ax1 ax2],'xy');
 xlim([19 30]);
 
 
 %% again, without the lines:
 figure();
-ax1 = subplot(1,2,1);
+ax1 = subplot(1,3,1);
 for i = neuron
     hold on;
     for ii = 1:max(TargetData(nn).trials);
@@ -116,12 +138,34 @@ for i = neuron
         % plot(stopT,1:size(TargetData(nn).metadata.trial_go(:)));
         % plot(TargetData(nn).metadata.water_on(:)+10,1:size(TargetData(nn).metadata.trial_go(:)));
 
-    
     clear tempNeuron;
     title(['Neuron ',num2str(i),' Target ',num2str(target)]);
 end
+xlim([19 30]);
 
-ax2 = subplot(1,2,2);
+
+%%
+ax1 = subplot(1,3,2);
+for i = neuron
+    hold on;
+    for ii = 1:max(TargetData(nn).trials);
+        lT = find(TargetData(nn).neurons==i  & TargetData(nn).trials == ii);
+        
+        tempNeuron{ii} = TargetData(nn).times(lT)-TargetData(nn).metadata.trial_go(ii)+20;
+    end
+    plotSpikeRaster(tempNeuron,'PlotType','vertline');
+      hold on;
+         %plot(40-stopT,1:size(TargetData(nn).metadata.trial_go(:)));
+         %plot((TargetData(nn).metadata.water_on(:)+10),1:size(TargetData(nn).metadata.trial_go(:)));
+    clear tempNeuron;
+    title(['Neuron ',num2str(i),' Target ',num2str(target)]);
+end
+%%
+xlim([12 23]);
+
+
+
+ax2 = subplot(1,3,3);
 for i = neuron
     hold on;
     for ii = 1:max(TargetData(nn).trials);
@@ -142,7 +186,6 @@ end
 ax2.YDir = 'reverse';
 ax1.YDir = 'reverse';
 
-linkaxes([ax1 ax2],'xy');
 xlim([19 30]);
 
 
