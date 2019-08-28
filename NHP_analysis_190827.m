@@ -1,4 +1,4 @@
-function NHP_analysis_190827( Val2_DIR,Val2_DIR,target);
+function NHP_analysis_190827(Val2_DIR,Val2_INDR,target);
 % Data:
 % Ganguly2009/data/targetdata/Val2
 
@@ -17,6 +17,8 @@ NHP_analysis_190630(Val2_DIR,Val2_INDR,target)
 end
 
 
+pause();
+close all
 
 figure(); 
 n = 7; % neuron
@@ -36,3 +38,5 @@ for i = 1:250;
    %ylim([-0.1 12]);
   pause(0.01); 
 end
+end
+
