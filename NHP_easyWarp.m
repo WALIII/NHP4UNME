@@ -15,7 +15,7 @@ startT = TargetData(nn).metadata.water_on(:)+10;
 trialLen = stopT-startT;
 
 MeanTL = 2.5;%mean(trialLen);
-disp(' Mean trial length is set to ', num2str(MeanTL),' seconds');
+disp([' Mean trial length is set to ', num2str(MeanTL),' seconds']);
 
 % make new vector with warped times
 TargetData(nn).warped_times = TargetData(nn).times;

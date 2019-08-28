@@ -1,5 +1,5 @@
 
-function NHP_analysis_190630(Val2_DIR,Val2_INDR)
+function NHP_analysis_190630(Val2_DIR,Val2_INDR,target)
 
 % plot schnitz data for direct and indirect data:
 
@@ -18,7 +18,7 @@ figure();
 hold on;
 col = jet(47);
 int1 = 1:50:301;
-for i = 3; % target
+for i = target; % target
     for ii = 1:size(Val2_all,1); % neuron    
         Val = Val2_all{ii,i};
         for session = 1:6;       
