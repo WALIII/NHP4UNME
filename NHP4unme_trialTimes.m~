@@ -26,12 +26,9 @@ for ii = 1:plotmax; % for a sample of targets,
                 waveforms{counter} = day.waveforms{cell}(ts_spk,:); % get corresponding waveforms
                 % Get Kin data
                 % find closest start and stop
-                Kin_idx = find(day.kindata_ts>stT(ii,counter)&day.kindata_ts<spT(ii,counter));
-                Kin_data{counter} = day.kindata(Kin_idx,:);                
-                Kin_data_ts{counter} = day.kindata_ts(Kin_idx)-stT(ii,counter);;
-                
-                
-                clear ts_spk temp temp2 Kin_idx;
+                Kin_data_ts{counter} = find(day.kindata_ts>stT(ii,counter)&day.kindata_ts<spT(ii,counter));
+                Kin_data{counter} = day.kindata(Kin_data_ts{counter});
+                clear ts_spk temp temp2;
                 counter = counter+1;
             catch
                 disp('missing data')
@@ -60,7 +57,7 @@ for ii = 1:plotmax; % for a sample of targets,
     
    
     % clear unnsorted vals
-    clear n_act_vect n_act_vect2 waveforms len Kin_data_ts Kin_data
+    clear n_act_vect n_act_vect2 waveforms len
     
     % len to plot
     Tlen = size(len_sort,2);
@@ -100,8 +97,6 @@ for ii = 1:plotmax; % for a sample of targets,
     out.timestamps{ii} = n_act_vect_sort;
     out.starts{ii} = len_sort(ii,:);%pad*3-len_sort(ii,:);
     out.ends{ii} = ones(1,size(len_sort,2))*pad;
-    out.KinData{ii} = Kin_data_sort;
-    out.KinDatats{ii} = Kin_data_ts_sort;
     if plotting ==1;
         hold on;
         for iii = 1:Tlen;
@@ -116,6 +111,8 @@ for ii = 1:plotmax; % for a sample of targets,
         end
     end
     out.len_sort = len_sort;
+    out.KinData = Kin_data_sort
+    out.K
     % % make firing rates
     % figure(3)
     % b(ii) = subplot(5,1,ii);
