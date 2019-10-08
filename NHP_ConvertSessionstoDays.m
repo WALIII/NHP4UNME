@@ -41,7 +41,10 @@ for i =1:NumSessions
                 out{counter}.timestamps{:,iii} = cat(2,out{counter}.timestamps{:,iii},neuronsOfInterest{i}.timestamps{:,iii});
                 out{counter}.starts{:,iii} = cat(2,out{counter}.starts{:,iii},neuronsOfInterest{i}.starts{:,iii});
                 out{counter}.ends{:,iii} = cat(2,out{counter}.ends{:,iii},neuronsOfInterest{i}.ends{:,iii});
-  
+  % Kin data
+                  out{counter}.KinData{:,iii} = cat(2,out{counter}.KinData{:,iii},neuronsOfInterest{i}.KinData{:,iii});
+                out{counter}.KinDatats{:,iii} = cat(2,out{counter}.KinDatats{:,iii},neuronsOfInterest{i}.KinDatats{:,iii});
+
                  
                  end
             
@@ -69,6 +72,9 @@ for iii = 1:7
     out{i}.ends{:,iii} = out{i}.ends{:,iii}(:,b);
     out{i}.starts{:,iii} = out{i}.starts{:,iii}(:,b);
     out{i}.timestamps{:,iii} = out{i}.timestamps{:,iii}(:,b);
+    out{i}.KinData{:,iii} = out{i}.KinData{:,iii}(:,b);
+    out{i}.KinDatats{:,iii} = out{i}.KinDatats{:,iii}(:,b);
+
 end
 end
 

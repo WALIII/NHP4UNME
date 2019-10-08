@@ -1,4 +1,4 @@
-function [TargetData]= NHP_FormatForWarping(paco_struct,direct_id,indirect_allfar_id,D_or_IND)
+function [TargetData,neuronsOfInterest]= NHP_FormatForWarping(paco_struct,direct_id,indirect_allfar_id,D_or_IND)
 %  NHP_FormatForWarping.m
 %  WAL3
 

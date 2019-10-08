@@ -1,11 +1,11 @@
 
 function NHP_KinTrajectories(out);
 
-session = 27
+session = 15;
 % Plot the kin data;
 col = {'r','g','b','y','m','c','w'};
 figure();
-for ii = 1:70; 
+for ii = 1:100; 
 for target = [1:7]; 
 toP = out{session}.KinData{target};
 bound = 50; 

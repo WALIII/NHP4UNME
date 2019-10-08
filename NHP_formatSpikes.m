@@ -48,7 +48,7 @@ for ix = 1:num_cells;  % cells
                 %catch
                 %end
             end
-            curr_trial = curr_trial+1
+            curr_trial = curr_trial+1;
         end  
     end
     curr_trial = 1;
