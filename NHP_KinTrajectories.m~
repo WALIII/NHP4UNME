@@ -81,10 +81,6 @@ for i = 1:size(out{session}.KinData{target},2)
  [b1 b2] = min(abs(timeVect-9.9));
  [b1 b3] = min(abs(timeVect-(9.9+diffG)));
 
- if b2>b3; 
-     disp('out of bounds..');
- continue;
- end % bad example...
 p = plot(toP{i}((b2:b3),1),toP{i}((b2:b3),2));
 %// modified jet-colormap
 cd = [uint8(jet(length(b2:b3))*255) uint8(ones(length(b2:b3),1))].'; %'
