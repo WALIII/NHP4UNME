@@ -76,7 +76,7 @@ for i = neuron
     clear tempNeuron;
     title(['Neuron ',num2str(i),' Target ',num2str(target)]);
 end
-xlim([19 30]);
+xlim([16 30]);
 set(gcf,'renderer','painters');
 
 
@@ -121,7 +121,7 @@ ax2.YDir = 'reverse';
 ax1.YDir = 'reverse';
 
 % linkaxes([ax1 ax2],'xy');
-xlim([19 30]);
+xlim([16 30]);
 
 
 %% again, without the lines:
@@ -142,7 +142,7 @@ for i = neuron
     clear tempNeuron;
     title(['Neuron ',num2str(i),' Target ',num2str(target)]);
 end
-xlim([19 30]);
+xlim([16 30]);
 
 
 %%
@@ -187,7 +187,7 @@ end
 ax2.YDir = 'reverse';
 ax1.YDir = 'reverse';
 
-xlim([19 30]);
+xlim([16 30]);
 
 
 figure();

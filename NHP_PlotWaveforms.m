@@ -1,7 +1,7 @@
 function NHP_PlotWaveforms(neuronsOfInterest);
 
 tod = 17;
-close all
+
 col = hsv(tod);
 neuron = 1;
 figure(); 
@@ -20,8 +20,8 @@ target = 1;
 lastD = 17;
 col = {'r','k'};
 figure(); 
-for neuron = 1:5;
-    subplot(1,5,neuron);
+for neuron = 1:15;
+    subplot(3,5,neuron);
    
 hold on;
 counter = 1;

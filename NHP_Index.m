@@ -1,4 +1,4 @@
-function [DN_index, IND_index, out] = NHP_Index(direct_id,indirect_far_id)
+function [DN_index, IND_index, out] = NHP_Index(direct_id,indirect_far_id,off2use)
 % get the true ID of each cell based on a convoluted indexing scheme...
 % For all cells
 
@@ -65,20 +65,33 @@ clear GG GGsum a b h
 
 
 %% Indirect Far Neurons
+% indirect ipsi
+% Indirect contra
+% indirect near
+
+
 h = cat(1,indirect_far_id{:});
 unique_ID = unique(h);
+offset = [15 15+58   15+58+65];
 
 % for each unique Direct cell, loop though all days and make a channel
 % reference for that day ( if there is one).
 for i = unique_ID'
     for day = 1:size(indirect_far_id,1);
         try
-            IND_index{i}(day) = find(indirect_far_id{day}==i)+15;
+            IND_index{i}(day) = find(indirect_far_id{day}==i)+offset(off2use);
         catch
             IND_index{i}(day) = NaN;
         end
     end
 end
+
+
+
+
+
+
+
 
 
 % Plot stable Inirect units:

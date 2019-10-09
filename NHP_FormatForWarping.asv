@@ -6,7 +6,7 @@ function [TargetData,neuronsOfInterest]= NHP_FormatForWarping(paco_struct,direct
 % Format data for dynamic time warping
 
 %% find index of neurons that can be consistantly tracked:
-[DN_index, IND_index, out] = NHP_Index(direct_id,indirect_allfar_id,D_or_IND);
+[DN_index, IND_index, out] = NHP_Index(direct_id,indirect_allfar_id,off2use);
 
 %% For Direct or Indirect units:
 if D_or_IND == 0;
@@ -17,7 +17,7 @@ else
 % Indirect
 disp('indexing for Indirect neurons');
 disp(' WARNING!!!!  1 = ipsi, 2 = contra, 3 = far')
-pause(1);
+pause(1)
 IdX = out.idx_stable_indirect;
 end
 %% Sanity check ( waveforms) with manual exclusion
@@ -27,17 +27,20 @@ end
 %% extract these cells on these days:
 counter = 1;
 for i = 1:size(IdX,1)
-    if D_or_IND == 0;
+    if D_or_IND == 1;
     cell2use = out.idx_stable_direct(i);
     else
     cell2use = out.idx_stable_indirect(i);
     end
 
-
+    try
     [~, neuronsOfInterest{counter}] = NHP4unme_acrossDays(paco_struct, DN_index,IND_index,cell2use,D_or_IND);   
     neuronsOfInterest{counter} = NHP_ConvertSessionstoDays(neuronsOfInterest{counter});
     counter = counter+1;
-
+    catch
+        disp('Error- skipping cell');
+    continue
+    end
     
 end
 %% Format for TimeWarping:

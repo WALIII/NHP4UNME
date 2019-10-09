@@ -32,14 +32,12 @@ for ii = cell_id;
 % go across ' 'blocks' days:
 for i = dateRange%1:36%:size(bmi_files.active_file_names,1)
 
-    
-    
-    if DIR_INDR == 1;
+    if DIR_INDR == 0;
 cell_ID = DN_index{ii}(i);
-    elseif DIR_INDR ==0
+    elseif DIR_INDR ==1
 cell_ID = IND_index{ii}(i);
     else % if you already sorted it before this function 
-cell_ID = cell_id;
+cell_ID = IND_index{ii}(i);% cell_id;
 %disp('running with pre-sorted data.. aka you know what you want already');
     end
  
